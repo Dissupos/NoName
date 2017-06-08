@@ -22,4 +22,5 @@
     *   `DB_DATABASE` - database name
     *   `DB_USERNAME` - user (default root)
     *   `DB_PASSWORD` - password (default empty)
-6. Run `php artisan migrate`
+6.  Run `php artisan key:generate` and `php artisan config:clear`, this commands will generate security key in `.end` file.
+7.  Run `php artisan migrate`
