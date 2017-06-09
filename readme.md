@@ -24,3 +24,4 @@
     *   `DB_PASSWORD` - password (default empty)
 6.  Run `php artisan key:generate` and `php artisan config:clear`, this commands will generate security key in `.env` file.
 7.  Run `php artisan migrate`
+8.  Run `php artisan passport:install`
