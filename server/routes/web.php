@@ -18,4 +18,9 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
     Route::get('test', function () {
         return response("Hello world", 200);
     });
+    Route::get('notes', 'NoteController@index');
+    Route::get('notes/{note}', 'NoteController@show');
+    Route::put('notes/{note}', 'NoteController@update');
+    Route::delete('notes/{note}', 'NoteController@destroy');
+    Route::post('notes', 'NoteController@store');
 });
