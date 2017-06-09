@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::post('/register', 'RegistrationController@store');
+Route::post('/login', 'SessionsController@store');
+
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
+    Route::get('test', function () {
+        return response("Hello world", 200);
+    });
 });

@@ -178,6 +178,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
+         * Api auth provider
+         */
+        Laravel\Passport\PassportServiceProvider::class,
+
+        /*
          * PhpStorm Helpers
          */
 
