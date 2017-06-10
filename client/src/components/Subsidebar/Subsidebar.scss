@@ -1,0 +1,102 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.subsidebar-container {
+  position: absolute;
+  background-color: $subsidebar-bg-color;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid $sidebar-border-color;
+  left: -$subsidebar-width;
+  width: $subsidebar-width;
+  transition: left $transition-duration;
+  z-index: 0;
+  overflow: hidden;
+  padding-bottom: 70px;
+
+  &.opened {
+    left: $sidebar-width;
+  }
+
+  & > .header {
+    font-size: 13px;
+    border-bottom: 1px solid $sidebar-border-color;
+    padding: 5px;
+    text-align: center;
+
+    i {
+      position: relative;
+      cursor: pointer;
+      font-size: 15px;
+      color: darken($sidebar-border-color, 25%);
+      top: 2px;
+    }
+  }
+
+  & > .search-form-container {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid $sidebar-border-color;
+
+    input {
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 4px;
+      border: 1px solid $sidebar-border-color;
+      width: 80%;
+      padding: 2px;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .add-note-container {
+      position: relative;
+      top: 4px;
+      display: inline-block;
+      font-size: 20px;
+      line-height: 20px;
+      margin-left: 10px;
+      color: $sidebar-border-color;
+    }
+  }
+
+  .notes-container {
+    .note {
+      cursor: pointer;
+      padding: 5px;
+      border-bottom: 1px solid $sidebar-border-color;
+
+      &.selected {
+        background: $sidebar-border-color;
+      }
+
+      & > div {
+        display: inline-block;
+      }
+
+      & > div:first-of-type {
+        width: 20%;
+        vertical-align: top;
+
+        .created-at {
+          font-size: 10px;
+        }
+      }
+
+      & > div:last-of-type {
+        width: 80%;
+        .note-name {
+          font-weight: bold;
+          font-size: 12px;
+        }
+
+        .note-desc {
+          font-size: 12px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
