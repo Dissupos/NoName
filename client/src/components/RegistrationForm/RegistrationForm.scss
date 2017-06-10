@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+@import '../../styles/colors';
+
+.registration-form-container {
+  input {
+    width: 70%;
+    background: none;
+    color: $subsidebar-bg-color;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $subsidebar-bg-color;
+
+    &:focus, &:active {
+      outline: none;
+      background: none;
+    }
+  }
+
+  button {
+    margin-top: 20px;
+    color: $subsidebar-bg-color;
+    border: 2px solid $subsidebar-bg-color;
+    background: none;
+    padding: 10px 20px;
+  }
+}

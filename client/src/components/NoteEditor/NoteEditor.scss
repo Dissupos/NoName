@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+@import '../../styles/colors';
+
+.editor-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: $sidebar-width;
+  transition: left $transition-duration;
+
+  .scrollbar {
+    .gm-scrollbar.-horizontal {
+      display: none;
+    }
+
+    .gm-scroll-view {
+      min-height: 500px;
+      max-height: 500px;
+      overflow-x: hidden;
+      border-bottom: 1px solid $sidebar-border-color;
+    }
+  }
+
+  & > .no-note-message-container {
+    position: absolute;
+    top: 40%;
+    display: block;
+    left: 0;
+    right: 0;
+  }
+
+  .controls {
+    color: $sidebar-font-color;
+
+    input.note-name {
+      background-color: $subsidebar-bg-color;
+      border-radius: 0;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 1px solid $sidebar-border-color;
+    }
+  }
+
+  .text-editor {
+    position: relative;
+
+    .public-DraftEditor-content {
+      padding: 10px;
+
+      pre {
+        & > div > span > span {
+          background: $sidebar-border-color;
+        }
+      }
+    }
+  }
+
+  .note-settings {
+    background-color: $subsidebar-bg-color;
+  }
+}

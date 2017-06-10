@@ -1,0 +1,10 @@
+@import '../../styles/colors';
+
+.url-span {
+  color: blue;
+  text-decoration: underline;
+
+  a {
+    cursor: pointer;
+  }
+}

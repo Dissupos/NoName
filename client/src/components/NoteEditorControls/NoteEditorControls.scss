@@ -1,0 +1,47 @@
+@import '../../styles/colors';
+
+.control-buttons {
+  background-color: $subsidebar-bg-color;
+  border-bottom: 1px solid $sidebar-border-color;
+  padding: 10px;
+
+  .buttons-group {
+    display: inline-block;
+    background-color: #404040;
+    border-radius: 5px;
+    margin-right: 3px;
+
+    span {
+      cursor: pointer;
+      display: inline-block;
+      padding: 2px 10px;
+      font-size: 18px;
+
+      &.bold-btn {
+        font-weight: bold;
+      }
+
+      &.italic-btn {
+        font-style: italic;
+      }
+
+      &.underline-btn {
+        text-decoration: underline;
+      }
+
+      &.active {
+        color: $primary-blue;
+      }
+    }
+
+    span + span {
+      border-left: 1px solid $sidebar-border-color;
+    }
+
+    &.block-types {
+      span + span {
+        border-left: 1px solid $sidebar-border-color;
+      }
+    }
+  }
+}

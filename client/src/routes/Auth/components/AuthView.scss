@@ -1,0 +1,43 @@
+@import '../../../styles/colors';
+@import '../../../styles/variables';
+
+.auth-view {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  font-weight: lighter;
+
+  h1, h4 {
+    font-weight: lighter;
+    margin-bottom: 40px;
+  }
+
+  .register-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: $registration-container-width;
+    background-color: $sidebar-bg-color;
+    color: $subsidebar-bg-color;
+    padding: 50px;
+
+    .welcome-message {
+      margin-top: 80px;
+    }
+  }
+
+  .login-container {
+    position: absolute;
+    top: 0;
+    left: $login-container-width;
+    right: 0;
+    bottom: 0;
+    background-color: $subsidebar-bg-color;
+    color: $sidebar-bg-color;
+
+    padding: 214px 40px 40px;
+  }
+}
