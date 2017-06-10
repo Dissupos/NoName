@@ -1,0 +1,55 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.sidebar-container {
+  background-color: $sidebar-bg-color;
+  color: $sidebar-font-color;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $sidebar-width;
+  padding: 20px 10px;
+  border-right: 1px solid $sidebar-border-color;
+  z-index: 1000;
+
+  .sidebar-content {
+
+    .logo-container {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+
+      .logo {
+        height: 60px;
+      }
+    }
+
+    .categories {
+      i {
+        font-size: 14px;
+        line-height: 16px;
+        margin-right: 3px;
+      }
+
+      cursor: pointer;
+    }
+
+    .tags {
+      margin-top: 30px;
+      .tag {
+        i {
+          font-size: 12px;
+          line-height: 14px;
+          margin-right: 3px;
+        }
+
+        max-width: 120px;
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
