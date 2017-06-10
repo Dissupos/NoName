@@ -10,8 +10,8 @@ const mapActionCreators = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  selectedTag: state.noteReducer.selectedTag,
-  tags: state.noteReducer.tags
+  selectedTag: state.noteReducer.get('selectedTag'),
+  tags: state.noteReducer.get('tags')
 })
 
 export default connect(mapStateToProps, mapActionCreators)(Sidebar)

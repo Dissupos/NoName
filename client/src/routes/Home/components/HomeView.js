@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from '../../../components/Sidebar'
-import Editor from '../../../components/Editor'
+import NoteEditor from '../../../components/NoteEditor'
 
 import './HomeView.scss'
 
@@ -13,7 +13,7 @@ class HomeView extends React.Component {
     return (
       <div className='home-view'>
         <Sidebar />
-        <Editor />
+        <NoteEditor />
       </div>
     )
   }

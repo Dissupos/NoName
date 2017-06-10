@@ -58,16 +58,15 @@ class Sidebar extends React.Component {
           </div>
         </div>
 
-        <Subsidebar tag={this.props.selectedTag} />
+        <Subsidebar />
       </div>
     )
   }
 }
 
 Sidebar.propTypes = {
-  tags: PropTypes.array,
-  actions: PropTypes.object,
-  selectedTag: PropTypes.any
+  tags: PropTypes.object,
+  actions: PropTypes.object
 }
 
 export default Sidebar
