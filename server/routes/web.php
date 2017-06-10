@@ -11,14 +11,15 @@
 |
 */
 
-Route::post('/register', 'RegistrationController@store');
-Route::post('/login', 'SessionsController@store');
+Route::post('/api/v1/register', 'RegistrationController@store');
+Route::post('/api/v1/login', 'SessionsController@store');
 
 Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
     Route::get('test', function () {
         return response("Hello world", 200);
     });
     Route::get('notes', 'NoteController@index');
+    Route::get('notes/tag/{tag}', 'TagController@index');
     Route::get('notes/{note}', 'NoteController@show');
     Route::put('notes/{note}', 'NoteController@update');
     Route::delete('notes/{note}', 'NoteController@destroy');

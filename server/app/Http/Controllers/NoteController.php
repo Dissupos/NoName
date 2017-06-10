@@ -14,7 +14,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return response()->json(auth()->user()->notes()->orderBy('created_at', 'desc')->get(['id', 'name']), 200);
+        return response()->json(auth()->user()->notes()->orderBy('created_at', 'desc')->select(['id', 'name'])->paginate(2), 200);
     }
 
     /**
