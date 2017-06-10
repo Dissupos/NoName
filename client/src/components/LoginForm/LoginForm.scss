@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+@import '../../styles/colors';
+
+.login-form-container {
+  input {
+    display: inline-block;
+    width: 100%;
+    background: none;
+    color: $sidebar-bg-color;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sidebar-bg-color;
+
+    &:focus, &:active {
+      outline: none;
+      background: none;
+    }
+  }
+
+  button {
+    margin-top: 20px;
+    color: $subsidebar-bg-color;
+    border: 2px solid $sidebar-bg-color;
+    background: $sidebar-bg-color;
+    padding: 10px 20px;
+  }
+
+  .forgot-password {
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import GeminiScrollbar from 'react-gemini-scrollbar'
+import { countPassedTime } from '../../utils/countPassedTime'
 
 import './Subsidebar.scss'
 
@@ -35,25 +36,7 @@ class Subsidebar extends React.Component {
   }
 
   getPassedTime (date) {
-    let time = Date.now() - date
-    let unit = 'ms'
-
-    if (time > 1000) {
-      unit = 'sec'
-      time /= 1000
-    }
-
-    if (time > 60) {
-      unit = 'min'
-      time /= 60
-    }
-
-    if (time > 60) {
-      unit = 'hours'
-      time /= 60
-    }
-
-    return `${time.toFixed(0)}${unit} ago`
+    return countPassedTime(date)
   }
 
   selectNote (note) {
@@ -65,18 +48,18 @@ class Subsidebar extends React.Component {
   }
 
   isNoteSelected (note) {
-    return this.props.selectedNote && this.props.selectedNote.id === note.id
+    return this.props.selectedNote && this.props.selectedNote.get('id') === note.get('id')
   }
 
   render () {
     let notes = this.props.notes
 
     return (
-      <div className={`subsidebar-container ${this.props.tag && 'opened'}`}>
+      <div className={`subsidebar-container ${this.props.selectedTag && 'opened'}`}>
         <div className='header'>
           {
-            this.props.tag !== 'all'
-              ? `Notes with #${this.props.tag} tag` : `All notes`
+            this.props.selectedTag !== 'all'
+              ? `Notes with #${this.props.selectedTag} tag` : `All notes`
           }
 
           <i
@@ -112,18 +95,18 @@ class Subsidebar extends React.Component {
                   this.selectNote(val)
                 }}
                 className={`note ${this.isNoteSelected(val) && 'selected'}`}
-                key={val.id}>
+                key={val.get('id')}>
                 <div>
                   <div className='created-at'>
-                    {this.getPassedTime(val.created)}
+                    {this.getPassedTime(val.get('created'))}
                   </div>
                 </div>
                 <div>
                   <div className='note-name'>
-                    {val.name}
+                    {val.get('name')}
                   </div>
                   <div className='note-desc'>
-                    {val.description}
+                    {val.get('description') && val.get('description').blocks[0].text}
                   </div>
                 </div>
               </div>
@@ -136,10 +119,10 @@ class Subsidebar extends React.Component {
 }
 
 Subsidebar.propTypes = {
-  notes: PropTypes.array,
-  tag: PropTypes.any,
+  notes: PropTypes.object,
   actions: PropTypes.object,
-  selectedNote: PropTypes.object
+  selectedNote: PropTypes.object,
+  selectedTag: PropTypes.any
 }
 
 export default Subsidebar
