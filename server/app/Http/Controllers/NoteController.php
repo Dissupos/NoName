@@ -16,7 +16,11 @@ class NoteController extends Controller
     public function index()
     {
         $count = Input::get('count', 20);
-        return response()->json(auth()->user()->notes()->orderBy('created_at', 'desc')->select(['id', 'name', 'created_at', 'updated_at'])->paginate($count), 200);
+        $user = auth()->user();
+        $notes_page = $user->notes()
+            ->orderBy('updated_at', 'desc')->select(['id', 'name', 'created_at', 'updated_at'])
+            ->paginate($count);
+        return response()->json($notes_page, 200);
     }
 
     /**
