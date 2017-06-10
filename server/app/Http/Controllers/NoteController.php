@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class NoteController extends Controller
 {
@@ -14,7 +15,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return response()->json(auth()->user()->notes()->orderBy('created_at', 'desc')->select(['id', 'name'])->paginate(2), 200);
+        $count = Input::get('count', 20);
+        return response()->json(auth()->user()->notes()->orderBy('created_at', 'desc')->select(['id', 'name', 'created_at', 'updated_at'])->paginate($count), 200);
     }
 
     /**
@@ -45,7 +47,7 @@ class NoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Note $note
+     * @param  \App\Nte $note
      * @return \Illuminate\Http\Response
      */
     public function show(Note $note)
