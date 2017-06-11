@@ -1,6 +1,10 @@
 import { applyMiddleware, compose, createStore as createReduxStore } from 'redux'
 import { persistStore, autoRehydrate } from 'redux-persist'
 import immutableTransform from 'redux-persist-transform-immutable'
+import effects from 'redux-effects'
+import fetch, { fetchEncodeJSON } from 'redux-effects-fetch'
+import timeout from 'redux-effects-timeout'
+import multi from 'redux-multi'
 import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
@@ -10,7 +14,7 @@ const createStore = (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk]
+  const middleware = [effects, thunk, timeout(), fetch, fetchEncodeJSON, multi]
 
   // ======================================================
   // Store Enhancers

@@ -9,11 +9,17 @@ class Sidebar extends React.Component {
   constructor (props) {
     super(props)
 
+    this.logout = this.logout.bind(this)
     this.openCategory = this.openCategory.bind(this)
   }
 
   openCategory (tag) {
     this.props.actions.selectTag(tag)
+  }
+
+  logout () {
+    this.props.actions.logout()
+    this.context.router.push('/auth')
   }
 
   render () {
@@ -39,6 +45,15 @@ class Sidebar extends React.Component {
                 }}>
                 <i className='fa fa-sticky-note-o' />
                 Notes
+              </div>
+
+              <div
+                className='item'
+                onClick={() => {
+                  this.logout()
+                }}>
+                <i className='fa fa-sign-out' />
+                Log out
               </div>
             </div>
 
@@ -67,6 +82,10 @@ class Sidebar extends React.Component {
 Sidebar.propTypes = {
   tags: PropTypes.object,
   actions: PropTypes.object
+}
+
+Sidebar.contextTypes = {
+  router: PropTypes.object
 }
 
 export default Sidebar

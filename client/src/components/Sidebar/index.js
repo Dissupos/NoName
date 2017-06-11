@@ -2,10 +2,12 @@ import Sidebar from './Sidebar'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { selectTag } from '../../reducers/NoteReducer'
+import { logout } from '../../reducers/AuthReducer'
 
 const mapActionCreators = (dispatch) => ({
   actions: bindActionCreators({
-    selectTag
+    selectTag,
+    logout
   }, dispatch)
 })
 
