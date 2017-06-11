@@ -12,6 +12,12 @@ class AuthView extends React.Component {
     this.handleSuccess = this.handleSuccess.bind(this)
   }
 
+  componentWillMount () {
+    if (this.props.isAuthenticated) {
+      this.context.router.push('/')
+    }
+  }
+
   handleSuccess () {
     this.context.router.push('/')
   }
@@ -39,7 +45,8 @@ class AuthView extends React.Component {
 }
 
 AuthView.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
+  isAuthenticated: PropTypes.bool
 }
 
 export default AuthView
