@@ -12,7 +12,7 @@
 */
 
 
-Route::group(['prefix' => 'api/v1'], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function () {
     Route::post('register', 'RegistrationController@store');
     Route::post('login', 'SessionsController@store');
 
