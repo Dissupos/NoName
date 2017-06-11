@@ -10,7 +10,7 @@ const mapActionCreators = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-
+  errors: state.authReducer.get('registrationErrors') && state.authReducer.get('registrationErrors').toJS()
 })
 
 export default connect(mapStateToProps, mapActionCreators)(RegistrationForm)
