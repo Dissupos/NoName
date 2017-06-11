@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NoteCreateRequest;
+use App\Http\Requests\NoteUpdateRequest;
 use App\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -26,19 +28,12 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param NoteCreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(NoteCreateRequest $request)
     {
         $data = request(['name', 'content']);
-        $v = validator($data, [
-            'name' => 'required|string|max:150',
-            'content' => 'required|string',
-        ]);
-
-        if ($v->fails()) {
-            return response()->json($v->errors()->all(), 400);
-        }
 
         $note = auth()->user()->notes()->create([
             'name' => $data['name'],
@@ -51,42 +46,31 @@ class NoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Nte $note
+     * @param Note|\App\Nte $note
      * @return \Illuminate\Http\Response
      */
     public function show(Note $note)
     {
-        return $note;
+        $this->authorize('view', $note);
+        return response()->json($note, 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param NoteUpdateRequest $request
      * @param  \App\Note $note
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function update(Note $note)
+    public function update(NoteUpdateRequest $request, Note $note)
     {
         $data = request(['name', 'content']);
-
-        if ($note->user->id !== auth()->id()) {
-            return response()->json('Bad auth', 403);
-        }
-        $v = validator($data, [
-            'name' => 'required|string|max:150',
-            'content' => 'required|string',
-        ]);
-
-        if ($v->fails()) {
-            return response()->json($v->errors()->all(), 400);
-        }
 
         $note->name = $data['name'];
         $note->content = $data['content'];
         $note->save();
 
-        return $note;
-
+        return response()->json($note, 200);
     }
 
     /**
@@ -97,11 +81,8 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        if ($note->user->id !== auth()->id()) {
-            return response()->json('Bad auth', 403);
-        }
+        $this->authorize('delete', $note);
         $note->delete();
-
         return response()->json('Deleted', 200);
     }
 }

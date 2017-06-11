@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Note;
+use App\Policies\NotePolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -15,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        Note::class => NotePolicy::class,
     ];
 
     /**
