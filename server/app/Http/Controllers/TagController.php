@@ -11,4 +11,13 @@ class TagController extends Controller
     {
         return $tag->notes->where('user_id', auth()->id());
     }
+
+    public function top()
+    {
+        return Tag::withCount('notes')
+            ->has('notes')
+            ->orderBy('notes_count', 'desc')
+            ->take(10)
+            ->pluck('name');
+    }
 }

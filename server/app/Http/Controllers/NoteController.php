@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NoteCreateRequest;
 use App\Http\Requests\NoteUpdateRequest;
 use App\Note;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -40,6 +41,16 @@ class NoteController extends Controller
             'content' => $data['content']
         ]);
 
+        if ($tags = request('tags')) {
+            foreach ($tags as $tag) {
+                $tag_entity = Tag::whereName($tag)->first();
+                if (!$tag_entity) {
+                    $tag_entity = Tag::create(['name' => $tag]);
+                }
+                $note->tags()->attach($tag_entity);
+            }
+        }
+
         return response()->json($note, 201);
     }
 
@@ -49,7 +60,8 @@ class NoteController extends Controller
      * @param Note|\App\Nte $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Note $note)
+    public
+    function show(Note $note)
     {
         $this->authorize('view', $note);
         return response()->json($note, 200);
@@ -62,13 +74,25 @@ class NoteController extends Controller
      * @param  \App\Note $note
      * @return string
      */
-    public function update(NoteUpdateRequest $request, Note $note)
+    public
+    function update(NoteUpdateRequest $request, Note $note)
     {
         $data = request(['name', 'content']);
 
         $note->name = $data['name'];
         $note->content = $data['content'];
         $note->save();
+
+        $note->tags()->detach();
+        if ($tags = request('tags')) {
+            foreach ($tags as $tag) {
+                $tag_entity = Tag::whereName($tag)->first();
+                if (!$tag_entity) {
+                    $tag_entity = Tag::create(['name' => $tag]);
+                }
+                $note->tags()->attach($tag_entity);
+            }
+        }
 
         return response()->json($note, 200);
     }
@@ -79,9 +103,11 @@ class NoteController extends Controller
      * @param  \App\Note $note
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Note $note)
+    public
+    function destroy(Note $note)
     {
         $this->authorize('delete', $note);
+        $note->tags()->detach();
         $note->delete();
         return response()->json('Deleted', 200);
     }

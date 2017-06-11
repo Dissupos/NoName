@@ -26,7 +26,8 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     protected $fillable = ['name', 'content'];
-    protected $hidden = ['user', 'pivot'];
+    protected $hidden = ['user', 'pivot', 'user_id'];
+
     protected $appends = ['tags'];
 
     public function user()

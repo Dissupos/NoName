@@ -30,6 +30,7 @@ Route::group(['prefix' => 'api/v1'], function () {
 
         Route::get('notes', 'NoteController@index');
         Route::get('notes/tag/{tag}', 'TagController@index');
+        Route::get('tags', 'TagController@top');
         Route::get('notes/{note}', 'NoteController@show');
         Route::put('notes/{note}', 'NoteController@update');
         Route::delete('notes/{note}', 'NoteController@destroy');
