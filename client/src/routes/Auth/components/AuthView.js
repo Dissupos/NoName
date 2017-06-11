@@ -1,10 +1,21 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import RegistrationForm from '../../../components/RegistrationForm'
 import LoginForm from '../../../components/LoginForm'
 
 import './AuthView.scss'
 
 class AuthView extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.handleSuccess = this.handleSuccess.bind(this)
+  }
+
+  handleSuccess () {
+    this.context.router.push('/')
+  }
+
   render () {
     return (
       <div className='auth-view'>
@@ -14,17 +25,21 @@ class AuthView extends React.Component {
             <h4>Create new account in noname note app</h4>
           </div>
 
-          <RegistrationForm />
+          <RegistrationForm onSuccess={this.handleSuccess} />
         </div>
 
         <div className='login-container'>
           <h4>or login with an existing account</h4>
 
-          <LoginForm />
+          <LoginForm onSuccess={this.handleSuccess} />
         </div>
       </div>
     )
   }
+}
+
+AuthView.contextTypes = {
+  router: PropTypes.object
 }
 
 export default AuthView

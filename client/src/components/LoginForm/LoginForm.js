@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './LoginForm.scss'
 
@@ -8,11 +9,11 @@ class LoginForm extends React.Component {
       <div className='login-form-container'>
         <form className='text-right'>
           <div className='form-group'>
-            <input className='form-control' placeholder='email' />
+            <input type='email' className='form-control' placeholder='email' />
           </div>
 
           <div className='form-group'>
-            <input className='form-control' placeholder='password' />
+            <input type='password' className='form-control' placeholder='password' />
           </div>
 
           <div className='form-group forgot-password'>
@@ -29,5 +30,9 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {}
+
+LoginForm.propTypes = {
+  router: PropTypes.object
+}
 
 export default LoginForm
